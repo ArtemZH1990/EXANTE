@@ -11,8 +11,8 @@ class TestMainApi:
         print("API checking ...")
         response = requests.get(UserApiData.base_url)
         print(f"Response status is {response.status_code}")
-        print("API status code compare")
         assert response.status_code == 200, "Status code is not OK. Connect denied"
+        print("API status code compare")
         print("Test passed")
 
     @allure.description("Checking API status without user key. Status code will be 400 or 500 series")
@@ -21,8 +21,8 @@ class TestMainApi:
         print("API checking ...")
         response = requests.post(UserApiData.url_for_correct_response)
         print(f"Response status is {response.status_code}")
-        print("API status code compare")
         assert response.status_code != 200, "Status code isn't 400 or 500 series"
+        print("API status code compare")
         print("Test passed")
 
     @allure.description("This test without one necessary parameter. Status code is can't be 200")
@@ -32,8 +32,8 @@ class TestMainApi:
         print("Sending user key in POST method")
         response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key)
         print(f"Response status is {response.status_code}")
-        print("API status code compare")
         assert response.status_code != 200, "Status code is not OK. Connect denied"
+        print("API status code compare")
         print("Test passed")
 
     @allure.description("Test with all necessary parameter. Status code will be 200")
@@ -43,8 +43,8 @@ class TestMainApi:
         print("Sending user key and q-parameter in POST method")
         response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.q_parameter)
         print(f"Response status is {response.status_code}")
-        print("API status code compare")
         assert response.status_code == 200, "Status code is not OK. Connect denied"
+        print("API status code compare")
         print("Test passed")
 
     @allure.description("Country checker test. Country in sending parameter have to be equal in response body")
@@ -55,10 +55,46 @@ class TestMainApi:
         response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.country_checker)
         response_body = response.json()
         response_API_country = response_body["location"]["name"]
-        print(response_API_country)
         assert response_API_country == UserApiData.country_checker["q"], "Countries aren't equal! Check response body"
+        print(f"""Response country - {response_API_country}. User chosen country - {UserApiData.country_checker["q"]} """)
         print("Test passed")
 
+
+    @allure.description("Temperature Celsius parameter existing test")
+    def test_temperature_celsius_parameter_exist(self):
+        print()
+        print("API checking ...")
+        print("Sending user key and q-parameter in POST method")
+        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.country_checker)
+        response_body = response.json()
+        response_temp_c = response_body["current"]["temp_c"]
+        assert response_temp_c != None, "Response temperature Celsius parameter doesn't exist "
+        print(f"Response temperature Celsius parameter  is {response_temp_c}")
+        print("Test passed")
+
+    @allure.description("Temperature Fahrenheit parameter existing test")
+    def test_temperature_fahrenheit_parameter_exist(self):
+        print()
+        print("API checking ...")
+        print("Sending user key and q-parameter in POST method")
+        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.country_checker)
+        response_body = response.json()
+        response_temp_f = response_body["current"]["temp_f"]
+        assert response_temp_f != None, "Response temperature Fahrenheit parameter doesn't exist "
+        print(f"Response temperature Fahrenheit parameter is {response_temp_f}")
+        print("Test passed")
+
+    @allure.description("Response humidity parameter existing test")
+    def test_humidity_parameter_exist(self):
+        print()
+        print("API checking ...")
+        print("Sending user key and q-parameter in POST method")
+        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.country_checker)
+        response_body = response.json()
+        response_humidity = response_body["current"]["humidity"]
+        assert response_humidity != None, "Response parameter humidity doesn't exist "
+        print(f"Response parameter humidity is {response_humidity}")
+        print("Test passed")
 
 
 
