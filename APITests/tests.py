@@ -47,6 +47,18 @@ class TestMainApi:
         assert response.status_code == 200, "Status code is not OK. Connect denied"
         print("Test passed")
 
+    @allure.description("Country checker test. Country in sending parameter have to be equal in response body")
+    def test_country_check_in_response_body(self):
+        print()
+        print("API checking ...")
+        print("Sending user key and country checker parameter in POST method")
+        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.country_checker)
+        response_body = response.json()
+        response_API_country = response_body["location"]["name"]
+        print(response_API_country)
+        assert response_API_country == UserApiData.country_checker["q"], "Countries aren't equal! Check response body"
+        print("Test passed")
+
 
 
 
