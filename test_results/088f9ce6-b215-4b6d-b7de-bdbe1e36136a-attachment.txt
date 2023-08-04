@@ -1,0 +1,6 @@
+
+API checking ...
+Sending user key in POST method
+Response status is 400
+API status code compare
+Test passed

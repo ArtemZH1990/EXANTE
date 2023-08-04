@@ -1,0 +1,5 @@
+
+API checking ...
+Sending user key and country checker parameter in POST method
+Tbilisi
+Test passed
