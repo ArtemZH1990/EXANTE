@@ -1,0 +1,5 @@
+
+API checking ...
+Response status is 200
+API status code compare
+Test passed

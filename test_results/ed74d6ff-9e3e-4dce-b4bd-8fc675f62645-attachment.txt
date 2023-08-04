@@ -1,0 +1,6 @@
+
+API checking ...
+Sending user key and q-parameter in POST method
+Response status is 200
+API status code compare
+Test passed
