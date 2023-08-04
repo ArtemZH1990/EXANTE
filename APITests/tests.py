@@ -19,7 +19,7 @@ class TestMainApi:
     def test_checking_api_status_code_without_user_key(self):
         print()
         print("API checking ...")
-        response = requests.post(UserApiData.url_for_correct_response)
+        response = requests.post(UserApiData.url_current_json)
         print(f"Response status is {response.status_code}")
         assert response.status_code != 200, "Status code isn't 400 or 500 series"
         print("API status code compare")
@@ -30,7 +30,7 @@ class TestMainApi:
         print()
         print("API checking ...")
         print("Sending user key in POST method")
-        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key)
+        response = requests.post(UserApiData.url_current_json, headers=UserApiData.user_key)
         print(f"Response status is {response.status_code}")
         assert response.status_code != 200, "Status code is not OK. Connect denied"
         print("API status code compare")
@@ -41,7 +41,7 @@ class TestMainApi:
         print()
         print("API checking ...")
         print("Sending user key and q-parameter in POST method")
-        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.q_parameter)
+        response = requests.post(UserApiData.url_current_json, headers=UserApiData.user_key, params=UserApiData.q_parameter)
         print(f"Response status is {response.status_code}")
         assert response.status_code == 200, "Status code is not OK. Connect denied"
         print("API status code compare")
@@ -52,7 +52,7 @@ class TestMainApi:
         print()
         print("API checking ...")
         print("Sending user key and country checker parameter in POST method")
-        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.country_checker)
+        response = requests.post(UserApiData.url_current_json, headers=UserApiData.user_key, params=UserApiData.country_checker)
         response_body = response.json()
         response_API_country = response_body["location"]["name"]
         assert response_API_country == UserApiData.country_checker["q"], "Countries aren't equal! Check response body"
@@ -65,7 +65,7 @@ class TestMainApi:
         print()
         print("API checking ...")
         print("Sending user key and q-parameter in POST method")
-        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.country_checker)
+        response = requests.post(UserApiData.url_current_json, headers=UserApiData.user_key, params=UserApiData.country_checker)
         response_body = response.json()
         response_temp_c = response_body["current"]["temp_c"]
         assert response_temp_c != None, "Response temperature Celsius parameter doesn't exist "
@@ -77,7 +77,7 @@ class TestMainApi:
         print()
         print("API checking ...")
         print("Sending user key and q-parameter in POST method")
-        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.country_checker)
+        response = requests.post(UserApiData.url_current_json, headers=UserApiData.user_key, params=UserApiData.country_checker)
         response_body = response.json()
         response_temp_f = response_body["current"]["temp_f"]
         assert response_temp_f != None, "Response temperature Fahrenheit parameter doesn't exist "
@@ -89,13 +89,24 @@ class TestMainApi:
         print()
         print("API checking ...")
         print("Sending user key and q-parameter in POST method")
-        response = requests.post(UserApiData.url_for_correct_response, headers=UserApiData.user_key, params=UserApiData.country_checker)
+        response = requests.post(UserApiData.url_current_json, headers=UserApiData.user_key, params=UserApiData.country_checker)
         response_body = response.json()
         response_humidity = response_body["current"]["humidity"]
         assert response_humidity != None, "Response parameter humidity doesn't exist "
         print(f"Response parameter humidity is {response_humidity}")
         print("Test passed")
 
+    @allure.description("Response external IP test")
+    def test_ip_checker(self):
+       print()
+       print("Sending user key and q-parameter in POST method")
+       response = requests.post(UserApiData.url_ip_lookup, headers=UserApiData.user_key, params=UserApiData.ip_checker)
+       response_body = response.json()
+       print(response_body)
+       response_ip = response_body["ip"]
+       assert  response_ip == UserApiData.external_IP, "Wrong response IP"
+       print(f"Response IP is {response_ip}. User external IP is {UserApiData.external_IP}")
+       print("Test passed")
 
 
 
