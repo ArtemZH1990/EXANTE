@@ -1,6 +1,6 @@
 
 API checking ...
 Sending user key in POST method
-Response status is 400
+Response status is 401
 API status code compare
 Test passed

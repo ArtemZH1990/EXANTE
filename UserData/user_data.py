@@ -1,4 +1,4 @@
-import whatismyip
+from UserMethods.user_methods import UserMainMethods
 
 
 class UserApiData:
@@ -8,7 +8,9 @@ class UserApiData:
     user_key = {"key": "4f3ebd87d32d4d01984122314230408"}
     q_parameter = {"q": "London", "lang": "eng"}    # It's necessary param for work with this API
     country_checker = {"q": "Tbilisi", "lang": "eng"}
-    external_IP = whatismyip.whatismyip()
+    external_IP = UserMainMethods.ip_getter()
     ip_checker = {"q": external_IP}
+
+
 
 

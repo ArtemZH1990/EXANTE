@@ -1,0 +1,5 @@
+
+API checking ...
+Sending user key and q-parameter in POST method
+Response temperature Fahrenheit parameter is 91.4
+Test passed

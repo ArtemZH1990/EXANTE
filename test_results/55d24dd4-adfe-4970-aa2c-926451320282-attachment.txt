@@ -1,0 +1,4 @@
+
+Sending user key and q-parameter in POST method
+Response IP is 31.146.86.13. User external IP is 31.146.86.13
+Test passed

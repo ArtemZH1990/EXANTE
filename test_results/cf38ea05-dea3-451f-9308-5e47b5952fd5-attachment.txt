@@ -1,5 +1,5 @@
 
 API checking ...
 Sending user key and country checker parameter in POST method
-Tbilisi
+Response country - Tbilisi. User chosen country - Tbilisi 
 Test passed

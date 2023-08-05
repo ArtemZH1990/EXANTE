@@ -1,0 +1,5 @@
+
+API checking ...
+Sending user key and q-parameter in POST method
+Response temperature Celsius parameter  is 33.0
+Test passed

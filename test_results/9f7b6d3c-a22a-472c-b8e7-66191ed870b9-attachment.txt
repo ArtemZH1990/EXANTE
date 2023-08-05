@@ -1,0 +1,5 @@
+
+API checking ...
+Sending user key and q-parameter in POST method
+Response parameter humidity is 41
+Test passed
