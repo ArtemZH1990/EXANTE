@@ -17,7 +17,7 @@ class TestMainApi:
         print("Test passed")
 
     @allure.description("Checking API status without user key. Status code will be 400 or 500 series")
-    def test_checking_api_status_code_without_user_key(self):
+    def test_api_status_code_without_user_key(self):
         print()
         print("API checking ...")
         response_status = UserMainMethods.get_status_user_method_for_base_url(UserApiData.url_current_json)
@@ -27,7 +27,7 @@ class TestMainApi:
         print("Test passed")
 
     @allure.description("This test without one necessary parameter. Status code is can't be 200")
-    def test_checking_api_status_code_with_user_key(self):
+    def test_api_status_code_with_user_key(self):
         print()
         print("API checking ...")
         print("Sending user key in POST method")
